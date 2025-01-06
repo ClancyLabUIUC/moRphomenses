@@ -31,10 +31,10 @@ output of \link{mm_ArrayData}
 (as integer); the results of k-means clustering based on PC scores.
 \item cth_grps - If \code{cth_grps} is specified, a vector defining group
 membership (as integer); the results of clustering using
-\link[dendextend:cutree-methods]{dendextend::cutree} for a given height.
+\link[stats:cutree]{stats::cutree} for a given height.
 \item ctk_grps - If \code{ctk_grps} is specified, a vector defining group
 membership (as integer); the results of clustering using
-\link[dendextend:cutree-methods]{dendextend::cutree} for a given number of clusters.
+\link[stats:cutree]{stats::cutree} for a given number of clusters.
 }
 }
 \description{

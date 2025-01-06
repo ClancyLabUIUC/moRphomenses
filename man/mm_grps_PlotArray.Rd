@@ -4,12 +4,16 @@
 \alias{mm_grps_PlotArray}
 \title{Plot Arrays of groups}
 \usage{
-mm_grps_PlotArray(A, grps)
+mm_grps_PlotArray(A, grps, reset_par = TRUE)
 }
 \arguments{
 \item{A}{an array to be plotted}
 
-\item{grps}{a vector defining group IDs to subset along the 3rd dimension of the array}
+\item{grps}{a vector defining group IDs to subset along the 3rd dimension of
+the array}
+
+\item{reset_par}{Optional, default = TRUE. If false, do not reset graphic
+parameters in order to create complex plots.}
 }
 \value{
 Returns no values, produces a series of plots.

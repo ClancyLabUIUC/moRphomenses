@@ -212,10 +212,10 @@ mm_Diagnostics <- function(dat, max_PC_viz=10, max_PC_calc=NULL, hide_plots = FA
 #'     (as integer); the results of k-means clustering based on PC scores.
 #'   \item cth_grps - If `cth_grps` is specified, a vector defining group
 #'     membership (as integer); the results of clustering using
-#'     [dendextend::cutree] for a given height.
+#'     [stats::cutree] for a given height.
 #'   \item ctk_grps - If `ctk_grps` is specified, a vector defining group
 #'     membership (as integer); the results of clustering using
-#'   [dendextend::cutree] for a given number of clusters.
+#'   [stats::cutree] for a given number of clusters.
 #' }
 #' @export
 #'
@@ -404,6 +404,8 @@ mm_CheckImputation <- function(A1, A2, ObO = interactive()){
 #' @param yr Y-range, in the form c(0,100)
 #' @param axis_labels Should units be printed along the axis. Defaults to FALSE
 #'   to maximize the profile shape.
+#' @param reset_par Optional, default = TRUE. If false, do not reset graphic
+#'    parameters in order to create complex plots.
 #' @return Plot individual(s) profile(s) in the default graphics device.
 #'
 #' @export
@@ -418,10 +420,14 @@ mm_PlotArray <- function(A,
                          plot_type = c("lines", "points"),
                          lbl = NULL,
                          yr = NULL,
-                         axis_labels = FALSE){
+                         axis_labels = FALSE,
+                         reset_par = TRUE){
 
   oldpar <- par(no.readonly = TRUE) ## get orig parameters
-  on.exit(par(oldpar)) ## ensure old par is reset on exit
+  if(reset_par){
+    on.exit(par(oldpar)) ## ensure old par is reset on exit
+  }
+
 
   ## default to lines
   if(identical(plot_type, c("lines", "points"))){
@@ -527,16 +533,22 @@ mm_PlotArray <- function(A,
 #' Function is experimental
 #'
 #' @param A an array to be plotted
-#' @param grps a vector defining group IDs to subset along the 3rd dimension of the array
+#' @param grps a vector defining group IDs to subset along the 3rd dimension of
+#'    the array
+#' @param reset_par Optional, default = TRUE. If false, do not reset graphic
+#'    parameters in order to create complex plots.
 #' @return Returns no values, produces a series of plots.
 #'
 #' @export
 
-mm_grps_PlotArray <- function(A, grps){
+mm_grps_PlotArray <- function(A, grps, reset_par = TRUE){
 
   oldpar <- par(no.readonly = TRUE)
-  on.exit(layout(matrix(1)))
-  on.exit(par(oldpar),add = TRUE)
+  if(reset_par){
+    on.exit(layout(matrix(1)))
+    on.exit(par(oldpar),add = TRUE)
+  }
+
 
   k <- length(levels(as.factor(grps)))
 
@@ -576,17 +588,21 @@ mm_grps_PlotArray <- function(A, grps){
 #' @param yPC The PC to plot on the y axis
 #' @param clas_col A character vector of groupings. Each level will be plotted as a different color.
 #' @param legend_cex A scaling factor to be applied specifically to the legend. Set to NULL for scatterplot only.
-#'
+#' @param reset_par Optional, default = TRUE. If false, do not reset graphic
+#'    parameters in order to create complex plots.
 #' @return Returns no object, plots results of PCA
 #' @export
 #'
 #'
 #'
-mm_pretty_pca <- function(PCA, xPC=1, yPC=2, clas_col = NULL, legend_cex = .8) {
+mm_pretty_pca <- function(PCA, xPC=1, yPC=2, clas_col = NULL, legend_cex = .8, reset_par = TRUE) {
 
   oldpar <- par(no.readonly = TRUE)
-  on.exit(layout(matrix(1)))
-  on.exit(par(oldpar),add = TRUE)
+  if(reset_par){
+    on.exit(layout(matrix(1)))
+    on.exit(par(oldpar),add = TRUE)
+
+  }
 
   out <- list()
   if (!class(PCA) %in% c("prcomp", "mmPCA")) {

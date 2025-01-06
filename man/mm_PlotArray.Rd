@@ -13,7 +13,8 @@ mm_PlotArray(
   plot_type = c("lines", "points"),
   lbl = NULL,
   yr = NULL,
-  axis_labels = FALSE
+  axis_labels = FALSE,
+  reset_par = TRUE
 )
 }
 \arguments{
@@ -36,6 +37,9 @@ array will be used.}
 
 \item{axis_labels}{Should units be printed along the axis. Defaults to FALSE
 to maximize the profile shape.}
+
+\item{reset_par}{Optional, default = TRUE. If false, do not reset graphic
+parameters in order to create complex plots.}
 }
 \value{
 Plot individual(s) profile(s) in the default graphics device.
