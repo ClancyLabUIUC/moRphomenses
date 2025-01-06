@@ -219,7 +219,11 @@ mm_Diagnostics <- function(dat, max_PC_viz=10, max_PC_calc=NULL, hide_plots = FA
 #' }
 #' @export
 #'
-mm_Phenotype <- function(dat, kgrps, cuttree_h=NULL, cuttree_k=NULL, plot_figs=TRUE){
+mm_Phenotype <- function(dat,
+                         kgrps,
+                         cuttree_h=NULL,
+                         cuttree_k=NULL,
+                         plot_figs=TRUE){
 
 
   out <- list()
@@ -588,21 +592,17 @@ mm_grps_PlotArray <- function(A, grps, reset_par = TRUE){
 #' @param yPC The PC to plot on the y axis
 #' @param clas_col A character vector of groupings. Each level will be plotted as a different color.
 #' @param legend_cex A scaling factor to be applied specifically to the legend. Set to NULL for scatterplot only.
-#' @param reset_par Optional, default = TRUE. If false, do not reset graphic
-#'    parameters in order to create complex plots.
 #' @return Returns no object, plots results of PCA
 #' @export
 #'
 #'
 #'
-mm_pretty_pca <- function(PCA, xPC=1, yPC=2, clas_col = NULL, legend_cex = .8, reset_par = TRUE) {
+mm_pretty_pca <- function(PCA, xPC=1, yPC=2, clas_col = NULL, legend_cex = .8) {
 
   oldpar <- par(no.readonly = TRUE)
-  if(reset_par){
-    on.exit(layout(matrix(1)))
-    on.exit(par(oldpar),add = TRUE)
+  on.exit(layout(matrix(1)))
+  on.exit(par(oldpar),add = TRUE)
 
-  }
 
   out <- list()
   if (!class(PCA) %in% c("prcomp", "mmPCA")) {

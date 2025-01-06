@@ -4,7 +4,14 @@
 \alias{mm_Phenotype}
 \title{Generate Phenotypes}
 \usage{
-mm_Phenotype(dat, kgrps, cuttree_h = NULL, cuttree_k = NULL, plot_figs = TRUE)
+mm_Phenotype(
+  dat,
+  kgrps,
+  cuttree_h = NULL,
+  cuttree_k = NULL,
+  plot_figs = TRUE,
+  reset_par = TRUE
+)
 }
 \arguments{
 \item{dat}{Either an Array of shape data, an mmPCA object, or an mmDiag object.}
@@ -17,6 +24,9 @@ height, h.}
 \item{cuttree_k}{Optional. Draw clsuters by splitting the tree into number of branches, k}
 
 \item{plot_figs}{Optional. Default = TRUE, plot phenotypes for each set(s) of subgroups.}
+
+\item{reset_par}{Optional, default = TRUE. If false, do not reset graphic
+parameters in order to create complex plots.}
 }
 \value{
 If plot_figs=TRUE (Default), plot associated graphs and return a list containing:
