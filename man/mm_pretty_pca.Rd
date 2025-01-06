@@ -4,14 +4,7 @@
 \alias{mm_pretty_pca}
 \title{Plot Calendar Days}
 \usage{
-mm_pretty_pca(
-  PCA,
-  xPC = 1,
-  yPC = 2,
-  clas_col = NULL,
-  legend_cex = 0.8,
-  reset_par = TRUE
-)
+mm_pretty_pca(PCA, xPC = 1, yPC = 2, clas_col = NULL, legend_cex = 0.8)
 }
 \arguments{
 \item{PCA}{Input data either prcomp or mmPCA.}
@@ -23,9 +16,6 @@ mm_pretty_pca(
 \item{clas_col}{A character vector of groupings. Each level will be plotted as a different color.}
 
 \item{legend_cex}{A scaling factor to be applied specifically to the legend. Set to NULL for scatterplot only.}
-
-\item{reset_par}{Optional, default = TRUE. If false, do not reset graphic
-parameters in order to create complex plots.}
 }
 \value{
 Returns no object, plots results of PCA
